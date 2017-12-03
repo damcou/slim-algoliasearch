@@ -1,0 +1,17 @@
+{% extends 'admin/admin.twig' %}
+
+{% block content %}
+    <form class="admin-form" action="{{ path_for('admin_signInPost') }}"  method="post">
+        <div class="form-group">
+            <label for="name">User <span class="required">*</span></label>
+            <input class="form-control" name="user" id="user" placeholder="User" type="text" required />
+        </div>
+        <div class="form-group">
+            <label for="name">Password <span class="required">*</span></label>
+            <input class="form-control" name="password" id="password" placeholder="Password" type="password" required />
+        </div>
+        {{ csrf_fields | raw }}
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+{% endblock %}

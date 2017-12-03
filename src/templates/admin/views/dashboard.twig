@@ -1,0 +1,12 @@
+{% extends 'admin/admin.twig' %}
+
+{% block content %}
+    <ul class="menu">
+        <li>
+            <a class="btn btn-primary" href="{{ path_for('admin_add') }}" >Add an application to the index</a>
+        </li>
+        <li>
+            <a class="btn btn-primary" href="{{ path_for('admin_delete') }}" >Delete an application from the index</a>
+        </li>
+    </ul>
+{% endblock %}

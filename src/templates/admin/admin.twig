@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width = device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+        <title>Admin - {{ title }}</title>
+        <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="{{ base_url() }}/assets/css/admin.css">
+    </head>
+    <body>
+    <header>
+        {% if logged %}
+            <div class="logout">
+                <a href="{{ path_for('admin_signOut') }}">Log out</a>
+            </div>
+        {% endif %}
+        <h1><a href="{{ path_for('admin') }}">Admin</a></h1>
+    </header>
+        <div class="container">
+            <h2>{{ title }}</h2>
+            {% include 'admin/includes/messages.twig' %}
+            {% block content %} {% endblock %}
+        </div>
+    </body>
+</html>

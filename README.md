@@ -27,14 +27,14 @@ In the backend, you can add a new application or delete one by specifying its Ob
 * rank
 
 ## Structure
-```src/app ``` - Application (PHP classes)
-```src/public ``` - Assets + index.php
-```src/slim ``` - Some Slim Framework files
-```src/templates ``` - Twig templates
-```src/tests ``` - PHPUnit tests
-```composer.json ```
-```composer.lock ```
-```phpunit.xml ```
+* ```src/app ``` - Application (PHP classes)
+* ```src/public ``` - Assets + index.php
+* ```src/slim ``` - Some Slim Framework files
+* ```src/templates ``` - Twig templates
+* ```src/tests ``` - PHPUnit tests
+* ```composer.json ```
+* ```composer.lock ```
+* ```phpunit.xml ```
 
 ## Contact
 If you have any question, fell free to send me an email to damien.couchez@gmail.com
