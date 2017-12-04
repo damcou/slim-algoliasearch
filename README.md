@@ -59,7 +59,6 @@ Where :id is the ObjectID of the application
 * ```src/templates ``` - Twig templates
 * ```src/tests ``` - PHPUnit tests
 * ```composer.json ```
-* ```composer.lock ```
 * ```phpunit.xml ```
 
 ## Contact

@@ -37,13 +37,13 @@ class ApplicationController
     public function addApplication($request, $response, $args)
     {
         $data   = $request->getParsedBody();
-        $result = $this->algoliaHelper->addApp($data);
+        $result = $this->algoliaHelper->addAppFromApi($data);
 
-        return $response->withJson(
-            [
-                "objectID" => $result['objectID']
-            ]
-        );
+        if (isset($result['errors']) && count($result['errors']) > 0) {
+            return $response->withJson($result['errors']);
+        }
+
+        return $response->withJson(['objectID' => $result['objectID']]);
     }
 
     /**
@@ -57,17 +57,11 @@ class ApplicationController
      */
     public function deleteApplication($request, $response, $args)
     {
-        if (! isset($args['id'])) {
-            return $response->withJson([]);
+        if (! isset($args['id']) || ! is_numeric($args['id']) ) {
+            return $response->withJson(['error' => 'Application ID must be an int.']);
         }
 
-        $applicationId = (int) $args['id'];
-        $this->algoliaHelper->deleteApp($applicationId);
-
-        return $response->withJson(
-            [
-                "status"   => $response->getStatusCode()
-            ]
-        );
+        $this->algoliaHelper->deleteApp($args['id']);
+        return $response->withJson(['status' => $response->getStatusCode()]);
     }
 }

@@ -60,11 +60,46 @@ class Algolia
      * @param array $data
      *
      * @return array $result
+     * @throws \Exception
      */
     public function addApp($data)
     {
-        $data   = $this->validateAppData($data);
-        $index  = $this->client->initIndex($this->indexName);
+        $validatedData = $this->validateAppData($data);
+        if (count($validatedData['errors']) > 0) {
+            throw new \Exception(implode($validatedData['errors'], '<br/>'));
+        }
+
+        return $this->proceedAppCreation($validatedData['data']);
+    }
+
+    /**
+     * Call PHP client to add an application from API
+     *
+     * @param array $data
+     *
+     * @return array $result
+     * @throws \Exception
+     */
+    public function addAppFromApi($data)
+    {
+        $validatedData = $this->validateAppData($data);
+        if (count($validatedData['errors']) > 0) {
+           return ['errors' =>  implode($validatedData['errors'], '\n')];
+        }
+
+        return $this->proceedAppCreation($validatedData['data']);
+    }
+
+    /**
+     * Proceed application creation
+     *
+     * @param array $data
+     *
+     * @return array $result
+     */
+    protected function proceedAppCreation($data)
+    {
+        $index = $this->client->initIndex($this->indexName);
         $result = $index->addObject($data);
 
         return $result;
@@ -76,29 +111,32 @@ class Algolia
      * @param array $data
      *
      * @return array
-     * @throws \Exception
      */
-    protected function validateAppData($data)
+    public function validateAppData($data)
     {
         $missingFields = [];
+        $errors        = [];
         foreach ($this->appMandatoryFields as $field) {
-            if(!$data[$field] || $data[$field] == '') {
+            if(! isset($data[$field]) || $data[$field] == '') {
                 $missingFields[] = $field;
             }
         }
 
         if (count($missingFields) > 0) {
-            throw new \Exception('Missing field(s) : ' . implode($missingFields, ', '));
+            $errors[] = 'Missing field(s) : ' . implode($missingFields, ', ');
         }
 
-        if(isset($data['rank']) && $data['rank'] != '') {
+        if (isset($data['rank']) && $data['rank'] != '') {
             if ( !is_numeric($data['rank'])) {
-                throw new \Exception('Rank attribute must be numeric');
+                $errors[] = 'Rank attribute must be numeric';
             }
             $data['rank'] = (int) $data['rank'];
         }
 
-        return $data;
+        return [
+            'data'   => $data,
+            'errors' => $errors
+        ];
     }
 
     /**
@@ -110,10 +148,8 @@ class Algolia
      */
     public function deleteApp($id)
     {
-        if (is_int($id)) {
-            $index = $this->client->initIndex($this->indexName);
-            $index->deleteObject($id);
-        }
+        $index = $this->client->initIndex($this->indexName);
+        $index->deleteObject((int) $id);
     }
 
     /**
