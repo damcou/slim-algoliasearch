@@ -7,7 +7,7 @@ In the backend, you can add a new application or delete one by specifying its Ob
 ## Install the Application
 1. ```composer update ```
 2. ```composer start ```
-3. go to ```localhost:8080``` for FRONTEND or ```localhost:8080/admin/login``` for BACKEND
+3. go to ```localhost:8080``` for FRONT or ```localhost:8080/admin/login``` for BACKOFFICE
 
 ## Test online
 Go to https://algoliasearch-slim.herokuapp.com/
@@ -40,4 +40,4 @@ Go to https://algoliasearch-slim.herokuapp.com/
 * ```phpunit.xml ```
 
 ## Contact
-If you have any question, fell free to send me an email to damien.couchez@gmail.com
+If you have any question, fell free to send me an email to damien.couchez[@]gmail[.]com
