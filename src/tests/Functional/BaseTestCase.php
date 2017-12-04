@@ -12,23 +12,30 @@ class BaseTestCase extends \PHPUnit_Framework_TestCase
     /**
      * Process the application given a request method and URI
      *
-     * @param string $requestMethod the request method (e.g. GET, POST, etc.)
-     * @param string $requestUri the request URI
-     * @param array|object|null $requestData the request data
+     * @param string            $requestMethod the request method (e.g. GET, POST, etc.)
+     * @param string            $requestUri    the request URI
+     * @param array|object|null $requestData   the request data
+     * @param string|null       $authToken     authorization token
+     *
      * @return \Slim\Http\Response
      */
-    public function runApp($requestMethod, $requestUri, $requestData = null)
+    public function runApp($requestMethod, $requestUri, $requestData = null, $authToken = null)
     {
+        $envConfig = [
+            'REQUEST_METHOD' => $requestMethod,
+            'REQUEST_URI' => $requestUri
+        ];
+
         // Create a mock environment for testing with
-        $environment = Environment::mock(
-            [
-                'REQUEST_METHOD' => $requestMethod,
-                'REQUEST_URI' => $requestUri
-            ]
-        );
+        $environment = Environment::mock($envConfig);
 
         // Set up a request object based on the environment
         $request = Request::createFromEnvironment($environment);
+
+        // Add an authorization coupon if specified
+        if (! is_null($authToken)) {
+            $request  = $request->withAddedHeader('AUTHORIZATION', $authToken);
+        }
 
         // Add request data, if it exists
         if (isset($requestData)) {

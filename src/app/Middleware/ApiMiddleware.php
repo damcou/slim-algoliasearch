@@ -26,6 +26,7 @@ class ApiMiddleware extends AbstractMiddleware {
         foreach ($authHeaders as $authHeader) {
             if ($authHeader == $settings['admin_account']['auth_token']) {
                 $authorized = true;
+                break;
             }
         }
 

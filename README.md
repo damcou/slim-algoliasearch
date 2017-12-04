@@ -52,6 +52,9 @@ You will receive the newly created application ObjectID in response.
 ```DELETE /api/1/apps/:id```
 Where :id is the ObjectID of the application
 
+## Launch test with PHPUnit
+```composer test ```
+
 ## Structure
 * ```src/app ``` - Application (PHP classes)
 * ```src/public ``` - Assets + index.php

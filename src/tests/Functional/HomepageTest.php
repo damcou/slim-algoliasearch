@@ -9,8 +9,7 @@ class HomepageTest extends BaseTestCase
      */
     public function testGetHomepageWithoutName()
     {
-//        $response = $this->runApp('GET', '/');
-//
-//        $this->assertEquals(200, $response->getStatusCode());
+        $response = $this->runApp('GET', '/');
+        $this->assertEquals(200, $response->getStatusCode());
     }
 }

@@ -18,10 +18,14 @@ $app->group('', function() use ($app) {
 $app->group('', function() use ($app) {
     $app->get('/admin/login', \App\Controllers\Admin\LoginController::class . ':signIn')
         ->setArgument('title', 'Sign In')
-        ->setName('admin_login');
+        ->setName('admin_login')
+        ->add($app->getContainer()->get('guardtokens'))
+        ->add($app->getContainer()->get('csrf'));
 
     $app->post('/admin/loginPost', \App\Controllers\Admin\LoginController::class . ':signInPost')
-        ->setName('admin_signInPost');
+        ->setName('admin_signInPost')
+        ->add($app->getContainer()->get('guardtokens'))
+        ->add($app->getContainer()->get('csrf'));
 })->add(new \App\Middleware\GuestMiddleware($container));
 
 // Admin reachable routes

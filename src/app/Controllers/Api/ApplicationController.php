@@ -40,7 +40,9 @@ class ApplicationController
         $result = $this->algoliaHelper->addAppFromApi($data);
 
         if (isset($result['errors']) && count($result['errors']) > 0) {
-            return $response->withJson($result['errors']);
+            return $response->withJson(
+                ['errors' => $result['errors']]
+            );
         }
 
         return $response->withJson(['objectID' => $result['objectID']]);

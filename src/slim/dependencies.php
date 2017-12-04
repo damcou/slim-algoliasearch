@@ -4,14 +4,14 @@ $container = $app->getContainer();
 
 // flash messages
 $container['flash'] = function () {
-    return new \Slim\Flash\Messages;
+    $storage = isset($_SESSION) ? null : [];
+    return new \Slim\Flash\Messages($storage);
 };
 
-// admin sessipn
+// admin session
 $container['session'] = function($container) {
     return new \App\Helper\Session;
 };
-
 
 // view renderer
 $container['view'] = function ($container) {
