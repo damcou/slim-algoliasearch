@@ -45,7 +45,6 @@ $container['csrf'] = function($container) {
     return new \Slim\Csrf\Guard;
 };
 
-// Register middleware
-//csrf
-$app->add(new \App\Middleware\CsrfGuardMiddleware($container));
-$app->add($container->csrf);
+$container['guardtokens'] = function($container) {
+    return new \App\Middleware\CsrfGuardMiddleware($container);
+};

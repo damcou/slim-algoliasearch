@@ -110,8 +110,10 @@ class Algolia
      */
     public function deleteApp($id)
     {
-        $index = $this->client->initIndex($this->indexName);
-        $index->deleteObject($id);
+        if (is_int($id)) {
+            $index = $this->client->initIndex($this->indexName);
+            $index->deleteObject($id);
+        }
     }
 
     /**

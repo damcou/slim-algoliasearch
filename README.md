@@ -29,6 +29,29 @@ Go to https://algoliasearch-slim.herokuapp.com/
 * category
 * rank
 
+## Use of REST API
+You can use two API functions :
+
+* Add an application
+
+```POST /api/1/apps``` 
+With a JSON object like this one :
+```json
+{
+  "name": "Damcou book",
+  "image": "http://www.hostingpics.net/thumbs/49/53/04/mini_495304applelogoblue175px.jpg",
+  "link": "http://itunes.apple.com/us/app/ibooks/id364709193?mt=8",
+  "category": "Books",
+  "rank": 3
+}
+```
+You will receive the newly created application ObjectID in response.
+
+* Delete an application
+
+```DELETE /api/1/apps/:id```
+Where :id is the ObjectID of the application
+
 ## Structure
 * ```src/app ``` - Application (PHP classes)
 * ```src/public ``` - Assets + index.php
