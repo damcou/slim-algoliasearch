@@ -27,8 +27,9 @@ class Config
             ],
             // Admin account
             'admin_account' => [
-                'login'    => 'admin',
-                'password' => '15f0f0f427b7a1c7c54051234900fdc4'
+                'login'      => 'admin',
+                'password'   => '15f0f0f427b7a1c7c54051234900fdc4',
+                'auth_token' => 'd79e2fea30698d727d3fa3239a7c1a644065dd62'
             ]
         ];
     }

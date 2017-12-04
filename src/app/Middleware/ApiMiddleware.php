@@ -18,6 +18,21 @@ class ApiMiddleware extends AbstractMiddleware {
      */
     public function __invoke($request, $response, $next)
     {
+        // Perform quick Authorization check to reach API endpoints
+        $settings    = \App\Helper\Config::getSettings();
+        $authHeaders = $request->getHeader("HTTP_AUTHORIZATION");
+        $authorized  = false;
+
+        foreach ($authHeaders as $authHeader) {
+            if ($authHeader == $settings['admin_account']['auth_token']) {
+                $authorized = true;
+            }
+        }
+
+        if (! $authorized) {
+            return $response->withStatus(403, 'Invalid authorization token.');
+        }
+
         $response = $next($request, $response);
         return $response;
     }
