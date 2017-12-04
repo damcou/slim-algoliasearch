@@ -9,6 +9,9 @@ In the backend, you can add a new application or delete one by specifying its Ob
 2. ```composer start ```
 3. go to ```localhost:8080``` for FRONTEND or ```localhost:8080/admin/login``` for BACKEND
 
+## Test online
+Go to https://algoliasearch-slim.herokuapp.com/
+
 ## Technologies
 * PHP - Slim Framework 3 (https://www.slimframework.com/)
 * Algolia's instantsearch (https://community.algolia.com/instantsearch.js/)
