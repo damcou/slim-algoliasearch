@@ -1,0 +1,27 @@
+{
+  "name": "slim-algoliasearch",
+  "version": "1.0.0",
+  "description": "gulp for slim-algoliasearch to use gulp-sass",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/damcou/slim-algoliasearch.git"
+  },
+  "keywords": [
+    "gulp",
+    "sass"
+  ],
+  "author": "Damien Couchez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/damcou/slim-algoliasearch/issues"
+  },
+  "homepage": "https://github.com/damcou/slim-algoliasearch#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-sass": "^3.1.0"
+  }
+}
