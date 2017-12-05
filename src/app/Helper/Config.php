@@ -12,8 +12,9 @@ class Config
     static public function getSettings()
     {
         return [
-            'displayErrorDetails' => true, // set to false in production
-            'addContentLengthHeader' => false, // Allow the web server to send the content-length header
+            'displayErrorDetails'    => true,
+            'addContentLengthHeader' => false,
+            'apiVersion'             => '1',
 
             // Renderer settings
             'renderer' => [

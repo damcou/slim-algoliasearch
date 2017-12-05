@@ -6,11 +6,18 @@ $app->get('/', \App\Controllers\HomeController::class . ':index');
 // Routes[BACKEND]
 // API routes
 $app->group('', function() use ($app) {
-    $app->post('/api/1/apps', \App\Controllers\Api\ApplicationController::class . ':addApplication')
-        ->setName('api_add');
+    $settings   = \App\Helper\Config::getSettings();
+    $apiVersion = $settings['apiVersion'];
+    $app->post(
+        '/api/' . $apiVersion . '/apps',
+        \App\Controllers\Api\ApplicationController::class . ':addApplicationV' . $apiVersion
+    )->setName('api_add');
 
-    $app->delete('/api/1/apps/{id}', \App\Controllers\Api\ApplicationController::class . ':deleteApplication')
-        ->setName('api_delete');
+    $app->delete(
+        '/api/' . $apiVersion . '/apps/{id}',
+        \App\Controllers\Api\ApplicationController::class . ':deleteApplicationV' . $apiVersion
+    )->setName('api_delete');
+
 })->add(new \App\Middleware\ApiMiddleware($container));
 
 // Routes[BACKOFFICE]

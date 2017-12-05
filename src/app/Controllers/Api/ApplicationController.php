@@ -26,7 +26,7 @@ class ApplicationController
     }
 
     /**
-     * Add application
+     * Add application (API version 1)
      *
      * @param Request  $request
      * @param Response $response
@@ -34,7 +34,7 @@ class ApplicationController
      *
      * @return \Psr\Http\Message\ResponseInterface
      */
-    public function addApplication($request, $response, $args)
+    public function addApplicationV1($request, $response, $args)
     {
         $data   = $request->getParsedBody();
         $result = $this->algoliaHelper->addAppFromApi($data);
@@ -49,7 +49,7 @@ class ApplicationController
     }
 
     /**
-     * Delete application
+     * Delete application (API version 1)
      *
      * @param Request  $request
      * @param Response $response
@@ -57,7 +57,7 @@ class ApplicationController
      *
      * @return \Psr\Http\Message\ResponseInterface|null
      */
-    public function deleteApplication($request, $response, $args)
+    public function deleteApplicationV1($request, $response, $args)
     {
         if (! isset($args['id']) || ! is_numeric($args['id']) ) {
             return $response->withJson(['error' => 'Application ID must be an int.']);
