@@ -27,12 +27,12 @@ search.addWidget(
 var hitTemplate =
     '<article class="hit">' +
     '<div class="app-picture-wrapper">' +
-    '<div class="app-picture"><img src="assets/img/placeholder.jpg" /></div>' +
+    '<div class="app-picture"><img id="img-{{{objectID}}}" src="{{{image}}}" /></div>' +
     '</div>' +
     '<div class="app-desc-wrapper">' +
     '<div class="app-name">{{{_highlightResult.name.value}}}</div>' +
     '<div class="app-type">{{{_highlightResult.category.value}}}</div>' +
-    '<div class="app-link"><a target="_blank" href="{{{_highlightResult.link.value}}}">See the application in the Apple store ></a></div>' +
+    '<div class="app-link"><a target="_blank" href="{{{link}}}">See the application in the Apple store ></a></div>' +
     '</div>' +
     '</article>';
 
@@ -48,10 +48,14 @@ search.addWidget(
       item: hitTemplate
     },
     transformData: function(hit) {
-      hit.stars = [];
-      for (var i = 1; i <= 5; ++i) {
-        hit.stars.push(i <= hit.rating);
-      }
+      // Lots of images are unreachable, so we replace them by a placeholder until the image is loaded and finally added
+      var fileToCheck = hit.image;
+      hit.image = 'assets/img/placeholder.jpg';
+      var image = new Image();
+      image.onload = function() {
+        document.getElementById('img-'+hit.objectID).src = image.src;
+      };
+      image.src = fileToCheck;
       return hit;
     }
   })

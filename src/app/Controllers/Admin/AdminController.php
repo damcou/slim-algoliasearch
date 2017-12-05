@@ -86,7 +86,15 @@ class AdminController extends AbstractController
         }
 
         $data = $request->getParsedBody();
-        $result = $this->algoliaHelper->addApp($data);
+        $result = $this->algoliaHelper->addApp(
+            [
+                'name'     => $data['name'],
+                'image'    => $data['image'],
+                'link'     => $data['link'],
+                'category' => $data['category'],
+                'rank'     => $data['rank']
+            ]
+        );
 
         if (isset($result['objectID'])) {
             $this->getFlash()->addMessage('info', 'Application (ID : ' . $result['objectID'] . ') has been added!' );
