@@ -19,11 +19,12 @@ class Config
             'renderer' => [
                 'template_path' => __DIR__ . '/../../templates/',
             ],
-            // Algolia setting
+            // Algolia settings
             'algolia' => [
-                'app_id'     => '53ITHX8IH4',
-                'api_key'    => 'bd72a5e144d53b9a20039becab2638f8',
-                'index_name' => 'appstore'
+                'app_id'       => '53ITHX8IH4',
+                'api_key'      => 'bd72a5e144d53b9a20039becab2638f8',
+                'index_name'   => 'appstore',
+                'replica_name' => 'appstore_rank_asc'
             ],
             // Admin account
             'admin_account' => [

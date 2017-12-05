@@ -3,9 +3,9 @@
 
 /* Initialize instantsearch */
 var search = instantsearch({
-  appId: '53ITHX8IH4',
-  apiKey: 'bd72a5e144d53b9a20039becab2638f8',
-  indexName: 'appstore'
+    appId: window.algoliaConfig.app_id,
+    apiKey: window.algoliaConfig.api_key,
+    indexName: window.algoliaConfig.index_name
 });
 
 /* Add searchbox */
@@ -103,8 +103,8 @@ search.addWidget(
   instantsearch.widgets.sortBySelector({
     container: '#sort-by-selector',
     indices: [
-      {name: 'appstore', label: 'Rank desc.'},
-      {name: 'appstore_rank_asc', label: 'Rank asc.'}
+      {name: window.algoliaConfig.index_name, label: 'Rank desc.'},
+      {name: window.algoliaConfig.replica_name, label: 'Rank asc.'}
     ],
     label:'sort by'
   })

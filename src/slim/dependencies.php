@@ -37,6 +37,10 @@ $container['view'] = function ($container) {
     // Add flash messages
     $view->getEnvironment()->addGlobal('flash',  $container->flash);
 
+    // Add instant search settings
+    $algoliaSettings = json_encode($settings['algolia']);
+    $view->getEnvironment()->addGlobal('algolia_settings', $algoliaSettings);
+
     return $view;
 };
 
