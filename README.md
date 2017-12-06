@@ -16,6 +16,8 @@ Go to https://algoliasearch-slim.herokuapp.com/
 * PHP - Slim Framework 3 (https://www.slimframework.com/)
 * Algolia's instantsearch (https://community.algolia.com/instantsearch.js/)
 * Twig template engine (https://twig.symfony.com/)
+* SASS (http://sass-lang.com/)
+* Gulp to preprocess SASS files (https://gulpjs.com/)
 * PHPUnit (https://phpunit.de/)
 
 ## This project uses 2 indices
@@ -35,7 +37,9 @@ You can use two API functions :
 * Add an application
 
 ```POST /api/1/apps``` 
+
 With a JSON object like this one :
+
 ```json
 {
   "name": "Damcou book",
@@ -45,15 +49,22 @@ With a JSON object like this one :
   "rank": 3
 }
 ```
+
 You will receive the newly created application ObjectID in response.
 
 * Delete an application
 
+
 ```DELETE /api/1/apps/:id```
+
 Where :id is the ObjectID of the application
 
 ## Launch test with PHPUnit
+
 ```composer test ```
+
+* Example of functional tests on the two API endpoints
+* Example of unit tests on the 3 Helpers
 
 ## Structure
 * ```src/app ``` - Application (PHP classes)
@@ -63,6 +74,24 @@ Where :id is the ObjectID of the application
 * ```src/tests ``` - PHPUnit tests
 * ```composer.json ```
 * ```phpunit.xml ```
+
+```
+path/to/app
+|-- node_modules   - javascript modules (gulp)
+|-- src
+|   |-- app        - Application (PHP classes)
+|   |-- public     - Assets + index.php
+|   |-- slim       - Some Slim Framework files
+|   |-- templates  - Twig templates
+|   `-- tests      - PHPUnit tests
+|-- vendor         - PHP modules (composer)
+|-- composer.json
+|-- gulpfile.js
+|-- package.json
+|-- phpunit.xml
+`-- README.md 
+
+```
 
 ## Contact
 If you have any question, fell free to send me an email to damien.couchez[@]gmail[.]com
