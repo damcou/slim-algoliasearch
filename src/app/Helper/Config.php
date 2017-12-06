@@ -14,7 +14,11 @@ class Config
         return [
             'displayErrorDetails'    => true,
             'addContentLengthHeader' => false,
-            'apiVersion'             => '1',
+            'apiVersions'            => [
+//                '0',     (virtual) legacy version ...
+                '1',
+//                '2',     (virtual) future version ...
+            ],
 
             // Renderer settings
             'renderer' => [

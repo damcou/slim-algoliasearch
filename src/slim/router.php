@@ -7,16 +7,19 @@ $app->get('/', \App\Controllers\HomeController::class . ':index');
 // API routes
 $app->group('', function() use ($app) {
     $settings   = \App\Helper\Config::getSettings();
-    $apiVersion = $settings['apiVersion'];
-    $app->post(
-        '/api/' . $apiVersion . '/apps',
-        \App\Controllers\Api\ApplicationController::class . ':addApplicationV' . $apiVersion
-    )->setName('api_add');
+    $apiVersions = $settings['apiVersions'];
 
-    $app->delete(
-        '/api/' . $apiVersion . '/apps/{id}',
-        \App\Controllers\Api\ApplicationController::class . ':deleteApplicationV' . $apiVersion
-    )->setName('api_delete');
+    foreach ($apiVersions as $apiVersion) {
+        $app->post(
+            '/api/' . $apiVersion . '/apps',
+            \App\Controllers\Api\ApplicationController::class . ':addApplicationV' . $apiVersion
+        )->setName('api_add_' . $apiVersion);
+
+        $app->delete(
+            '/api/' . $apiVersion . '/apps/{id}',
+            \App\Controllers\Api\ApplicationController::class . ':deleteApplicationV' . $apiVersion
+        )->setName('api_delete_' . $apiVersion);
+    }
 
 })->add(new \App\Middleware\ApiMiddleware($container));
 
