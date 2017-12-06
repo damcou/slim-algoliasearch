@@ -2,7 +2,8 @@
 
 This demo application is using Algolia's instantsearch with the PHP framework Slim.
 It uses some Apple applications sample data to display a list that can be filtered by the searchbar and faceted by categories.
-In the backend, you can add a new application or delete one by specifying its ObjectID.
+You can add and delete applications using the 2 endpoints of the backend (see below).
+You can also do it with the backoffice.
 
 ## Install the Application
 1. ```composer update ```
@@ -32,7 +33,7 @@ Go to https://algoliasearch-slim.herokuapp.com/
 * rank
 
 ## Use of REST API
-You can use two API functions :
+You can use two API functions (you will need to add an Authorization HEADER to do so) :
 
 * Add an application
 
@@ -67,14 +68,6 @@ Where :id is the ObjectID of the application
 * Example of unit tests on the 3 Helpers
 
 ## Structure
-* ```src/app ``` - Application (PHP classes)
-* ```src/public ``` - Assets + index.php
-* ```src/slim ``` - Some Slim Framework files
-* ```src/templates ``` - Twig templates
-* ```src/tests ``` - PHPUnit tests
-* ```composer.json ```
-* ```phpunit.xml ```
-
 ```
 path/to/app
 |-- node_modules   - javascript modules (gulp)
